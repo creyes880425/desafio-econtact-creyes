@@ -286,7 +286,7 @@ function sumatoria(numeros = []) {
   return sum;
 }
 
-console.log(`La sumatoria de los numeros es: ${sumatoria([2, 3, 6, 8, 10])}`)
+console.log(`La sumatoria de los numeros es: ${sumatoria([2, 3, 6, 8, 10])}`);
 //! =======================================================================================================================================================
 
 /**
@@ -357,7 +357,7 @@ function validarArreglo(numeros = []) {
   return false;
 }
 
-console.log(`La sumatoria es mayor que 100: ${validarArreglo([1, 2, 4, 5, 5, 67, 40])}`)
+console.log(`La sumatoria es mayor que 100: ${validarArreglo([1, 2, 4, 5, 5, 67, 40])}`);
 //! =======================================================================================================================================================
 
 /**
@@ -366,14 +366,22 @@ console.log(`La sumatoria es mayor que 100: ${validarArreglo([1, 2, 4, 5, 5, 67,
  *? Recordar que Javascript es "Case Sensitive", es decir, distingue entre mayúsculas y minúsculas.
  */
 
-function validarNombre(nombres = [], nombre) {}
+function validarNombre(nombres = [], nombre) {
+  return (nombres.indexOf(nombre.toLowerCase()) > -1);
+}
+
+console.log(`Existe el nombre: ${validarNombre(['carlos', 'luis', 'pedro'], 'carlos')}`);
 //! =======================================================================================================================================================
 
 /**
  *? EJERCICIO 16: Crear una función que reciba 2 (dos) parámetros: un arreglo de números y número. La función debe retornar la posición de ese valor en el arreglo
  */
 
-function devolverPosicion(numeros = [], numero) {}
+function devolverPosicion(numeros = [], numero) {
+  return numeros.indexOf(numero);
+}
+
+console.log(`La posición del valor en el arreglo es: ${devolverPosicion([1,2,3,4,5,6], 5)}`);
 //! =======================================================================================================================================================
 
 /**
@@ -381,7 +389,11 @@ function devolverPosicion(numeros = [], numero) {}
  *? dentro de los sectores de E-Contact. Caso contrario, retornar False
  */
 
-function verificarSector(econtact = {}, sector) {}
+function verificarSector(econtact = {}, sector) {
+  return (econtact.datos.sectores.indexOf(sector) > -1);
+}
+
+console.log(`El segundo parámetro se encuentra dentro de los sectores de E-Contact: ${verificarSector(objetoFijo, 'Contabilidad')}`);
 //! =======================================================================================================================================================
 
 /**
@@ -389,7 +401,18 @@ function verificarSector(econtact = {}, sector) {}
  *? La función debe retornar la cantidad de sedes que tengan una cantidad de empleados menor a la cantidad establecida como segundo parámetro.
  */
 
-function verificarCantidadEmpleadosPorSede(econtact = {}, cantidad) {}
+function verificarCantidadEmpleadosPorSede(econtact = {}, cantidad) {
+  let cont = 0;
+  const sedes = econtact.datos.sedes;
+  Object.keys(sedes).forEach(sede => {
+    if (sedes[sede].empleados < cantidad) {
+      cont ++;
+    }  
+  });
+  return cont;
+}
+
+console.log(`Hay ${verificarCantidadEmpleadosPorSede(objetoFijo, 35)} sedes con menos empleados.`);
 //! =======================================================================================================================================================
 
 /**
@@ -400,7 +423,17 @@ function verificarCantidadEmpleadosPorSede(econtact = {}, cantidad) {}
  *?
  */
 
-function verificarClave(objeto = {}, clave) {}
+function verificarClave(objeto = {}, clave) {  
+  return (Object.keys(objeto).indexOf(clave) > -1);
+}
+
+const alumno = { 
+  nombre: 'Juan', 
+  edad: 35, 
+  profesion: 'programador' 
+};
+
+console.log(`La clave está presente en el objeto: ${verificarClave(alumno, 'altura')}`);
 //! =======================================================================================================================================================
 
 /**
@@ -408,4 +441,13 @@ function verificarClave(objeto = {}, clave) {}
  *? Recordatorio: al inicio hay un arreglo de numeros reales como ejemplo.
  */
 
-function quitarParteDecimal(arregloNumerosReales = []) {}
+function quitarParteDecimal(arregloNumerosReales = []) {
+  let newArray = [];
+  arregloNumerosReales.forEach(num => {
+    newArray.push(Math.floor(num));
+  });
+
+  return newArray;
+}
+
+console.log(`El nuevo arreglo es: ${quitarParteDecimal(numerosReales)}`);
